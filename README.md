@@ -745,6 +745,30 @@ Or it can be an error object:
 
 ___
 
+### Upload Complex elems 
+Upload a list of Complex elems to the specified group. Every user who belongs to this group will be able to use these complex elems. Please note that every upload will overwrite the previous uploads!  
+
+#####Type
+  + POST
+
+#####Route
+  + //api.edmdesigner.com/json/complexElem/addComplexElemToGroup
+
+#### Parameters (you should post):
+   * groupId {String} /REQUIRED/ The id of the group. Note that it has to be a valid MongoDB _id. It's best if you use the values that you got when you list your groups with the [/json/groups/list](#list-groups) route.
+   * items {Array} /REQUIRED/ The list of footers which the users of the specified group will be able to use. __Please note that if you upload a new list, the old list will be overwrited!__ If you want to know how a complex element object should look like, please read [this](#structure) part of the documentation.
+
+####Answer:
+An object with two arrays:
+  - success {Array} list of the footers which were successfully added to the group
+  - failed {Array} list of the object: 
+    - footer {Object} The footer which is not valid therefore it was not added to the group
+    - error {String} The reason why the footer is not valid
+
+Or it can be an error object:
+  - err Description of the error {String} or an error code {Number}.
+
+___
 ## User handler routes
 
 ### List
